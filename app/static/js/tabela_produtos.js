@@ -7,7 +7,7 @@ fetch('/tabela_dias')
    //console.log(dados);
     
 
-    const eGridDiv = document.getElementById("tabela_vendedor");
+    const eGridDiv = document.getElementById("tabela_produtos");
     const columnDefs = [
         { field: "first_name", 
           rowGroupIndex: 0, 
