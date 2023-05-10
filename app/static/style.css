@@ -34,6 +34,16 @@ a {
   margin-right: .25%;
 }
 
+.box-tabela {
+  height: 50vh;
+  width: 80vh;
+  border-radius: 5px;
+  background-color: #2D3037;
+  margin-top: 5.5%;
+  margin-left: .25%;
+  margin-right: .25%;
+}
+
 .bx {
   height: 50vh;
   max-height: 50vh;
@@ -169,10 +179,44 @@ li{
   transform: rotate(45deg) translate(-5px, -7px);
 }
 
-@media (max-width: 999px) and (orietation:landscape){
-  body {
-    overflow-x: hidden;
+@media (max-width: 999px) and (orientation: landscape) {
+  .box {
+    height: 17vh;
+    width: 48vh;
   }
+
+  h2 {
+    font-size: 3vh;
+  }
+
+  h3 {
+    font-size: 6vh;
+  }
+
+  .box-grafico {
+    margin-top: 1.5%;
+    height: 70vh;
+    width: 60vh;
+  }
+
+  .box-tabela {
+    margin-top: 1.5%;
+    height: 70vh;
+    width: 166vh;
+  }
+
+  .bx {
+    height: 70vh;
+    max-height: 70vh;
+  }
+  nav { 
+    height: 12vh;
+  }
+
+  h1 {
+    visibility: hidden;
+  }
+
 }
 
 @media (max-width: 999px) and (orientation: portrait) {
@@ -197,6 +241,12 @@ li{
    position: center;
 
  }
+ .box-tabela{
+  height: 50vh;
+  width: 90vw;
+  position: center;
+
+}
 
 
 

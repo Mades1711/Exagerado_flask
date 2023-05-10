@@ -39,7 +39,6 @@ fetch('/grafico_protunit')
           plugins: {
             title: {
               display: true,
-              text: 'Quantidade vendida por preço unitário',
               color: "white",
               font: {
                   size: 15

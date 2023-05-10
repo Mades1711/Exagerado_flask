@@ -19,7 +19,10 @@ fetch('/tabela_dias')
           field: "valor_unitpro", 
           aggFunc: 'sum', 
           valueFormatter: params => `R$ ${params.value.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')}`,
-          enableGroupTotal: true
+          enableGroupTotal: true,
+          enableValue: true,
+          minWidth: 120, maxWidth: 120,
+          
         },
 
         { field: "faixas",
@@ -28,14 +31,17 @@ fetch('/tabela_dias')
         },
 
 
-        { headerName: "Vendas", 
+        { headerName: "V", 
           field: "first_occurrence", 
-          aggFunc: 'sum'
+          aggFunc: 'sum',
+          minWidth: 85, maxWidth: 85 
          },
 
-        { headerName: "QTD Peças", 
+        { headerName: "P", 
           field:'qtd_peça', 
-          aggFunc:'sum' 
+          aggFunc:'sum',
+
+          minWidth: 85, maxWidth: 85 
         },
 
         { headerName: "TKM", 
@@ -45,6 +51,7 @@ fetch('/tabela_dias')
             return total/vendas;
           },
          valueFormatter: params => `R$ ${params.value.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')}`,
+         minWidth: 100, maxWidth: 100 
        }
 
     ];
@@ -54,13 +61,16 @@ fetch('/tabela_dias')
         rowData: dados,
         animateRows: true,
         suppressColumnVirtualisation: true,
+        suppressAggFuncInHeader: true,
         autoGroupColumnDef:{
              field: 'os_id',
+             pinned: 'left',
              cellRendererParams: {
                  suppressCount: true
              },
         },
         defaultColDef: {
+          resizable: true,
           sortable: true,
           filter: true,
           
