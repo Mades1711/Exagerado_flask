@@ -44,6 +44,16 @@ a {
   margin-right: .25%;
 }
 
+.box-tabela_vendedor {
+  height: 50vh;
+  width: 80vh;
+  border-radius: 5px;
+  background-color: #2D3037;
+  margin-top: 2.5%;
+  margin-left: .25%;
+  margin-right: .25%;
+}
+
 .bx {
   height: 70vh;
   max-height: 70vh;
@@ -205,6 +215,12 @@ li{
     margin-top: 1.5%;
     height: 70vh;
     width: 166vh;
+  }
+
+  .box-tabela_vendedor {
+    height: 100vh;
+    width: 98vw;
+    position: center;
   }
 
   .bx {

@@ -7,13 +7,13 @@ fetch('/tabela_dias')
    //console.log(dados);
     
 
-    const eGridDiv = document.getElementById("tabela_dias");
+    const eGridDiv = document.getElementById("tabela_vendedor");
     const columnDefs = [
-        { field: "Dia_semana", 
+        { field: "first_name", 
           rowGroupIndex: 0, 
           hide: true,
           cellRenderer: 'agGroupCellRenderer',
-          lockPosition: true,
+          lockPosition: true
          }, 
 
         { headerName: "Total", 
@@ -22,7 +22,7 @@ fetch('/tabela_dias')
           valueFormatter: params => `R$ ${params.value.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')}`,
           enableGroupTotal: true,
           enableValue: true,
-          minWidth: 120, maxWidth: 120,
+          
           lockPosition: true
         },
 
@@ -36,14 +36,14 @@ fetch('/tabela_dias')
         { headerName: "Vendas", 
           field: "first_occurrence", 
           aggFunc: 'sum',
-          minWidth: 100, maxWidth: 100,
+          
           lockPosition: true 
          },
 
         { headerName: "Peças", 
           field:'qtd_peça', 
           aggFunc:'sum',
-          minWidth: 100, maxWidth: 100,
+          
           lockPosition: true
         },
 
@@ -54,7 +54,7 @@ fetch('/tabela_dias')
             return total/vendas;
           },
          valueFormatter: params => `R$ ${params.value.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')}`,
-         minWidth: 100, maxWidth: 100,
+         
          lockPosition: true
        }
 
@@ -67,7 +67,7 @@ fetch('/tabela_dias')
         suppressColumnVirtualisation: true,
         suppressAggFuncInHeader: true,
         autoGroupColumnDef:{
-             field: 'os_id',
+             field: 'grupo',
              pinned: 'left',
              cellRendererParams: {
                  suppressCount: true
@@ -77,6 +77,7 @@ fetch('/tabela_dias')
           resizable: true,
           sortable: true,
           filter: true,
+          floatingFilter: true,
           
         }
 

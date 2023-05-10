@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <title>Exagerado Diniz</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+  <link rel="icon" href="{{ url_for('static', filename='Logo DI.png')}}">
+</head>
+
+<body>
+  <header>
+    <nav>
+      <img src="{{ url_for('static', filename='logo-01.png')}}" class="logo">
+      <div class="mobile-menu">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+
+      <ul class="nav-list">
+        <li><a href="/">Início</a></li>
+        <li><a href="/vendedor">Vendedor</a></li>
+        <li><a href="/produtos">Produtos</a></li>
+
+      </ul>
+    </nav>
+  </header>
+  <main>
+        <div class="box-tabela_vendedor"> 
+            
+              <div id ="tabela_vendedor" class="ag-theme-alpine-dark" style="height: 100vh"></div>
+            
+        </div>
+    
+  </main>
+  <!-- plugins -->
+  <script  src="{{ url_for('static', filename='js/aggrid_1.js')}}" type="text/javascript"></script> 
+  <script  src="{{ url_for('static', filename='js/aggrid_2.js')}}" type="text/javascript"></script> 
+  <script  src="{{ url_for('static', filename='js/aggrid_3.js')}}" type="text/javascript"></script> 
+  <script  src="{{ url_for('static', filename='js/aggrid_4.js')}}" type="text/javascript"></script> 
+
+
+<!-- funções -->
+  <script src="{{ url_for('static', filename='js/mobile-navbar.js')}}" type="module"></script>
+  <script  src="{{ url_for('static', filename='js/tabela_vendedor.js')}}" type="text/javascript"></script> 
+
+
+
+</body>
+
+</html>

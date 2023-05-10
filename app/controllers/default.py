@@ -78,8 +78,16 @@ def consulta_tabela_dias():
    df['first_occurrence'] = df.groupby('os_id').cumcount() == 0
    df['first_occurrence'] = df['first_occurrence'].astype(int)
    df['qtd_peça'] = 1
-   
+  
    return jsonify(df.to_dict(orient='records'))
+
+@app.route ("/vendedor")
+def vendedor():
+   return render_template('vendedor.html')
+
+@app.route ("/produtos")
+def produtos():
+   return render_template('produtos.html')
 
 @app.route ("/")
 def index():
@@ -129,3 +137,4 @@ def index():
                           Quantidade_produto = Quantidade_produto,
                           TKM_formatado = TKM_formatado,
                           )
+

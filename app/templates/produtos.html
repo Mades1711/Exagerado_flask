@@ -29,68 +29,12 @@
     </nav>
   </header>
   <main>
-
-    <div class="kpi">
-      <div class="coluna">
-        <h1> HOJE </h1>
-        <div class="box">
-          <h2>TOTAL VENDIDO HOJE</h2>
-          <h3>R$ {{Total_vendido_ultimodia_formatado}}</h3>
-        </div>
-        <div class="box">
-          <h2>QUANTIDADE VENDAS</h2>
-          <h3>{{Quantidade_venda_ultimodia}}</h3>
-        </div>
-        <div class="box">
-          <h2>QUANTIDADE PRODUTO</h2>
-          <h3>{{Quantidade_produto_ultimodia}}</h3>
-        </div>
-        <div class="box">
-          <h2>TKM</h2>
-          <h3>R$ {{TKM_ultimodia_formatado}}</h3>
-        </div>
-      </div>
-      <div class="coluna">
-        <h1> TOTAL </h1>
-        <div class="box">
-          <h2>TOTAL VENDIDO</h2>
-          <h3>R$ {{Total_vendido_formatado}}</h3>
-        </div>
-        <div class="box">
-          <h2>QUANTIDADE VENDAS</h2>
-          <h3>{{Quantidade_venda}}</h3>
-        </div>
-        <div class="box">
-          <h2>QUANTIDADE PRODUTO</h2>
-          <h3>{{Quantidade_produto}}</h3>
-        </div>
-        <div class="box">
-          <h2>TKM</h2>
-          <h3>{{TKM_formatado}}</h3>
-        </div>
-      </div>
-    </div>
-    <div class="kpi">
-      <div class="coluna">
-        <div class="box-grafico">
-          <div class="bx">
-            <div class="subbox">
-              <h2>Quantidade vendida por preço unitário</h2>
-            <canvas id ="grafico"></canvas>
-            </div>
-          </div>
-        </div>
         <div class="box-tabela"> 
             
               <div id ="tabela_dias" class="ag-theme-alpine-dark" style="height: 70vh"></div>
             
         </div>
-      </div>
-    </div>
     
-
-
-
   </main>
   <!-- plugins -->
   <script  src="{{ url_for('static', filename='js/chart_umd.js')}}" type="text/javascript"></script> 
