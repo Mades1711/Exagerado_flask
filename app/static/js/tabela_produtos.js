@@ -9,13 +9,24 @@ fetch('/tabela_dias')
 
     const eGridDiv = document.getElementById("tabela_produtos");
     const columnDefs = [
-        { field: "first_name", 
-          rowGroupIndex: 0, 
+        { field: "grupo", 
+         rowGroupIndex: 0, 
           hide: true,
           cellRenderer: 'agGroupCellRenderer',
           lockPosition: true,
           minWidth: 220, maxWidth: 220,
+          filter: true,
+          
          }, 
+
+         { field: "Dia_semana", 
+         rowGroupIndex: 1, 
+         hide: true,
+         cellRenderer: 'agGroupCellRenderer',
+         lockPosition: true,
+         minWidth: 220, maxWidth: 220,
+        }, 
+
 
         { headerName: "Total", 
           field: "valor_unitpro", 
@@ -28,7 +39,7 @@ fetch('/tabela_dias')
         },
 
         { field: "faixas",
-          rowGroupIndex: 1, 
+          rowGroupIndex: 2, 
           hide: true,
           lockPosition: true,
           minWidth: 130, maxWidth: 130,
@@ -69,7 +80,7 @@ fetch('/tabela_dias')
         suppressColumnVirtualisation: true,
         suppressAggFuncInHeader: true,
         autoGroupColumnDef:{
-             field: 'grupo',
+             field: 'os_id',
              pinned: 'left',
              cellRendererParams: {
                  suppressCount: true
@@ -78,8 +89,7 @@ fetch('/tabela_dias')
         defaultColDef: {
           resizable: true,
           sortable: true,
-          filter: true,
-          floatingFilter: true,
+          
           
         }
 

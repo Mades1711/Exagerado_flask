@@ -17,6 +17,14 @@ fetch('/tabela_dias')
           minWidth: 220, maxWidth: 220,
          }, 
 
+         { field: "Dia_semana", 
+         rowGroupIndex: 1, 
+         hide: true,
+         cellRenderer: 'agGroupCellRenderer',
+         lockPosition: true,
+         minWidth: 220, maxWidth: 220,
+        }, 
+
         { headerName: "Total", 
           field: "valor_unitpro", 
           aggFunc: 'sum', 
@@ -28,7 +36,7 @@ fetch('/tabela_dias')
         },
 
         { field: "faixas",
-          rowGroupIndex: 1, 
+          rowGroupIndex: 2, 
           hide: true,
           lockPosition: true,
           minWidth: 130, maxWidth: 130,
