@@ -13,6 +13,7 @@ fetch('/tabela_dias')
           rowGroupIndex: 0, 
           hide: true,
           cellRenderer: 'agGroupCellRenderer',
+          lockPosition: true
          }, 
 
         { headerName: "Total", 
@@ -22,26 +23,28 @@ fetch('/tabela_dias')
           enableGroupTotal: true,
           enableValue: true,
           minWidth: 120, maxWidth: 120,
-          
+          lockPosition: true
         },
 
         { field: "faixas",
           rowGroupIndex: 1, 
           hide: true,
+          lockPosition: true
         },
 
 
         { headerName: "Vendas", 
           field: "first_occurrence", 
           aggFunc: 'sum',
-          minWidth: 100, maxWidth: 100 
+          minWidth: 100, maxWidth: 100,
+          lockPosition: true 
          },
 
         { headerName: "Peças", 
           field:'qtd_peça', 
           aggFunc:'sum',
-
-          minWidth: 100, maxWidth: 100 
+          minWidth: 100, maxWidth: 100,
+          lockPosition: true
         },
 
         { headerName: "TKM", 
@@ -51,7 +54,8 @@ fetch('/tabela_dias')
             return total/vendas;
           },
          valueFormatter: params => `R$ ${params.value.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')}`,
-         minWidth: 100, maxWidth: 100 
+         minWidth: 100, maxWidth: 100,
+         lockPosition: true
        }
 
     ];
