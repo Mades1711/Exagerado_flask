@@ -217,6 +217,10 @@ li{
     visibility: hidden;
   }
 
+  .nav-list li {
+    margin-left: -12px;
+}
+
 }
 
 @media (max-width: 999px) and (orientation: portrait) {

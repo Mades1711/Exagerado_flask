@@ -31,17 +31,17 @@ fetch('/tabela_dias')
         },
 
 
-        { headerName: "V", 
+        { headerName: "Vendas", 
           field: "first_occurrence", 
           aggFunc: 'sum',
-          minWidth: 85, maxWidth: 85 
+          minWidth: 100, maxWidth: 100 
          },
 
-        { headerName: "P", 
+        { headerName: "Peças", 
           field:'qtd_peça', 
           aggFunc:'sum',
 
-          minWidth: 85, maxWidth: 85 
+          minWidth: 100, maxWidth: 100 
         },
 
         { headerName: "TKM", 
