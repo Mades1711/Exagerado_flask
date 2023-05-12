@@ -31,8 +31,29 @@ inner join users_user uu
 on uu.id = vv.vendedor_id
 
 where vv.status = 'f'
-and create_at < 20221018
+
 """
+
+sql2 = """
+select 
+codpro_id,
+grupo,
+descricao,
+vcv.valor_unitsis,
+vcv.valor_unitpro
+from vendas_corpo_venda vcv
+
+inner join produtos_produto pp
+on pp.codigo = vcv.codpro_id
+
+inner join vendas_venda vv
+on vcv.os_id = vv.ordem
+
+
+where vv.status = 'f'
+
+"""
+# and create_at < 20221018
 
 def Connect():
   conn = mysql.connector.connect(
@@ -42,6 +63,14 @@ def Connect():
     passwd = config("MSSQL_PASS")
     )
   return conn
+
+def produto():
+   df = pd.read_sql(sql2,Connect())
+   df= df.groupby(['codpro_id', 'descricao']).apply(lambda x: x.assign(num_ocorrencias=len(x))).reset_index(drop=True)
+   df = df.drop_duplicates(subset=['codpro_id'])
+   df['valor_total'] = df['valor_unitpro'] * df['num_ocorrencias']
+   
+   return df
 
 def Base_dados():
   df = pd.read_sql(sql,Connect())
@@ -65,6 +94,11 @@ def obter_dados():
     dfvu = dfvu.sort_values('quantidade', ascending=False)
     return jsonify(dfvu.to_dict(orient='records'))
 
+@app.route("/tabela_produtos")
+def dados_produtos():
+   df = produto()
+   return jsonify(df.to_dict(orient='records'))
+
 @app.route ("/tabela_dias")
 def consulta_tabela_dias():
    df = Base_dados()
@@ -78,7 +112,6 @@ def consulta_tabela_dias():
    df['first_occurrence'] = df.groupby('os_id').cumcount() == 0
    df['first_occurrence'] = df['first_occurrence'].astype(int)
    df['qtd_peça'] = 1
-  
    return jsonify(df.to_dict(orient='records'))
 
 @app.route ("/vendedor")

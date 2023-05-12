@@ -22,7 +22,7 @@ fetch('/tabela_dias')
           valueFormatter: params => `R$ ${params.value.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')}`,
           enableGroupTotal: true,
           enableValue: true,
-          minWidth: 120, maxWidth: 120,
+          minWidth: 150, maxWidth: 150,
           lockPosition: true
         },
 
@@ -66,6 +66,8 @@ fetch('/tabela_dias')
         animateRows: true,
         suppressColumnVirtualisation: true,
         suppressAggFuncInHeader: true,
+        groupIncludeFooter: true,
+        groupIncludeTotalFooter: true,
         autoGroupColumnDef:{
              field: 'os_id',
              pinned: 'left',

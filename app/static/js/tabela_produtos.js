@@ -1,104 +1,119 @@
 var dados;
 
-fetch('/tabela_dias')
+fetch('/tabela_produtos')
   .then(response => response.json())
   .then(data => {
     dados = data;
    //console.log(dados);
-    
+
 
     const eGridDiv = document.getElementById("tabela_produtos");
     const columnDefs = [
-        { field: "grupo", 
-         rowGroupIndex: 0, 
-          hide: true,
+        { headerName: "Código",
+          field: "codpro_id",
           cellRenderer: 'agGroupCellRenderer',
-          lockPosition: true,
-          minWidth: 220, maxWidth: 220,
-          filter: true,
-          
-         }, 
+          minWidth: 220, maxWidth: 220,        
+         },
 
-         { field: "Dia_semana", 
-         rowGroupIndex: 1, 
-         hide: true,
+         { field: "grupo",
          cellRenderer: 'agGroupCellRenderer',
-         lockPosition: true,
          minWidth: 220, maxWidth: 220,
-        }, 
+        },
+
+       { field: "descricao",
+        cellRenderer: 'agGroupCellRenderer',
+        minWidth: 300, maxWidth: 300,
+       },
 
 
-        { headerName: "Total", 
-          field: "valor_unitpro", 
-          aggFunc: 'sum', 
-          valueFormatter: params => `R$ ${params.value.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')}`,
+        { headerName: "Valor unitário",
+          field: "valor_unitsis",
+         // valueFormatter: params => `R$ ${params.value.toLocaleString('pt-BR')}`,
           enableGroupTotal: true,
           enableValue: true,
           minWidth: 220, maxWidth: 220,
-          lockPosition: true
+         
         },
 
-        { field: "faixas",
-          rowGroupIndex: 2, 
-          hide: true,
-          lockPosition: true,
-          minWidth: 130, maxWidth: 130,
-        },
+        
 
+        { headerName: "Valor Promocional",
+        field: "valor_unitpro",
+       // valueFormatter: params => `R$ ${params.value.toLocaleString('pt-BR')}`,
+        enableGroupTotal: true,
+        enableValue: true,
+        minWidth: 220, maxWidth: 220,
+     
+      },
 
-        { headerName: "Vendas", 
-          field: "first_occurrence", 
+        { headerName: "QTD Vendido",
+          field:'num_ocorrencias',
+          minWidth: 150, maxWidth: 150,
           aggFunc: 'sum',
-          minWidth: 130, maxWidth: 130,
-          lockPosition: true 
-         },
-
-        { headerName: "Peças", 
-          field:'qtd_peça', 
-          aggFunc:'sum',
-          minWidth: 130, maxWidth: 130,
-          lockPosition: true
+          
         },
 
-        { headerName: "TKM", 
-          valueGetter: function(params){
-            var total = params.getValue('valor_unitpro')
-            var vendas = params.getValue('first_occurrence')
-            return total/vendas;
-          },
-         valueFormatter: params => `R$ ${params.value.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')}`,
-         minWidth: 130, maxWidth: 130,
-         lockPosition: true
-       }
+        { headerName: "Total",
+        field: "valor_total",
+       // valueFormatter: params => `R$ ${params.value.toLocaleString('pt-BR')}`,
+        enableGroupTotal: true,
+        enableValue: true,
+        aggFunc: 'sum',
+        minWidth: 220, maxWidth: 220,
+        
+      },
 
     ];
-    
+
     const gridOptions = {
         columnDefs: columnDefs,
+
         rowData: dados,
         animateRows: true,
-        suppressColumnVirtualisation: true,
-        suppressAggFuncInHeader: true,
-        autoGroupColumnDef:{
-             field: 'os_id',
-             pinned: 'left',
-             cellRendererParams: {
-                 suppressCount: true
-             },
-        },
+        groupIncludeFooter: true,
+        groupIncludeTotalFooter: true,
+        
+
+        //defaultToolPanel: 'filters',
+
         defaultColDef: {
           resizable: true,
           sortable: true,
-          
-          
-        }
+          filter: true,
+          enableValue: true,
+          enableRowGroup: true,
+          enablePivot: true,
+          flex: 1,
+          lockPosition: true,
+        },
+        sideBar: {
+          toolPanels: [
+              {
+                  id: 'columns',
+                  labelDefault: 'Columns',
+                  labelKey: 'columns',
+                  iconKey: 'columns',
+                  toolPanel: 'agColumnsToolPanel',
+                  minWidth: 225,
+                  maxWidth: 225,
+                  width: 225
+              },
+              {
+                  id: 'filters',
+                  labelDefault: 'Filters',
+                  labelKey: 'filters',
+                  iconKey: 'filter',
+                  toolPanel: 'agFiltersToolPanel',
+                  minWidth: 180,
+                  maxWidth: 400,
+                  width: 250
+              },              
+          ],
+          position: 'left',
+        },
+  }
 
-        
-    };
-    
-    
     new agGrid.Grid(eGridDiv, gridOptions);
-    
     //gridOptions.api.sizeColumnsToFit();
 
 });
