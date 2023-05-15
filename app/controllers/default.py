@@ -9,7 +9,7 @@ import warnings
 import numpy as np
 
 warnings.filterwarnings('ignore')
-locale.setlocale(locale.LC_ALL, 'pt_BR')
+locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
 
 sql = """select 
 os_id,
