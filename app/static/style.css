@@ -114,8 +114,12 @@ nav {
   font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif;
   background: #2D3037;
   height: 8vh;
+}
 
-  
+header{
+  top: 0;
+  position: sticky;
+  position: -webkit-sticky;
 }
 
 main {
@@ -126,7 +130,6 @@ main {
 .nav-list {
   list-style: none;
   display: flex;
-
 }
 
 .nav-list li {
@@ -155,6 +158,7 @@ main {
 li{
   margin: 40px;
 }
+
 
 @keyframes navLinkFade {
   from {
@@ -281,13 +285,14 @@ li{
    right: 0;
    width: 50vw;
    height: 92vh;
-   background: #23232e;
+   background: #2D3037;
    flex-direction: column;
    align-items: center;
    transform: translateX(100%);
    transition: transform 0.3s ease-in;
-   z-index: 1;
  }
+
+
 
  .nav-list li {
    margin-left: 0;
@@ -297,6 +302,8 @@ li{
  .mobile-menu {
    display: block;
  }
+
+ 
 }
 
 
