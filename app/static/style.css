@@ -11,7 +11,7 @@ a {
   color: #fff;
   text-decoration: none;
   transition: 0.3s;
-  margin: 30px;
+  margin: 15px;
 }
 
 .box {
@@ -25,7 +25,7 @@ a {
 }
 
 .box-grafico {
-  height: 70vh;
+  height: 50vh;
   width: 80vh;
   border-radius: 5px;
   background-color: #2D3037;
@@ -45,7 +45,7 @@ a {
 }
 
 .bx {
-  height: 70vh;
+  height: 50vh;
   max-height: 70vh;
   overflow-y: scroll;
 }

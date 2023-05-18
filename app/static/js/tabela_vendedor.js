@@ -5,6 +5,21 @@ fetch('/tabela_dias')
   .then(data => {
     dados = data;
    //console.log(dados);
+
+   function decimalFormatter(params) {
+    // Defina o número de casas decimais desejado
+    const decimalPlaces = 2;
+  
+    // Verifique se o valor é um número
+    if (typeof params.value !== 'number') {
+      return params.value;
+    }
+  
+    // Formate o valor com o número fixo de casas decimais
+    const formattedValue = params.value.toFixed(decimalPlaces);
+  
+    return formattedValue;
+  }
     
 
     const eGridDiv = document.getElementById("tabela_vendedor");
@@ -37,7 +52,7 @@ fetch('/tabela_dias')
         { headerName: "Total", 
           field: "valor_unitpro", 
           aggFunc: 'sum', 
-          valueFormatter: params => `R$ ${params.value.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')}`,
+          //valueFormatter: params => `R$ ${params.value.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')}`,
           enableGroupTotal: true,
           enableValue: true,
           minWidth: 220, maxWidth: 220,
@@ -74,7 +89,7 @@ fetch('/tabela_dias')
             var vendas = params.getValue('first_occurrence')
             return total/vendas;
           },
-         valueFormatter: params => `R$ ${params.value.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')}`,
+         valueFormatter: decimalFormatter,
          minWidth: 130, maxWidth: 130,
          lockPosition: true
        },

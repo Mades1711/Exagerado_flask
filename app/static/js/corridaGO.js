@@ -1,13 +1,13 @@
 var dados;
 
-fetch('/tabela_produtos')
+fetch('/corrida_go')
   .then(response => response.json())
   .then(data => {
     dados = data;
    //console.log(dados);
 
 
-    const eGridDiv = document.getElementById("tabela_produtos");
+    const eGridDiv = document.getElementById("tabela_go");
     const columnDefs = [
         { headerName: "Código",
           field: "codpro_id",

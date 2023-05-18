@@ -31,6 +31,7 @@ inner join users_user uu
 on uu.id = vv.vendedor_id
 
 where vv.status = 'f'
+and create_at < 20221018
 
 """
 
@@ -51,6 +52,7 @@ on vcv.os_id = vv.ordem
 
 
 where vv.status = 'f'
+and create_at < 20221018
 
 """
 # and create_at < 20221018
@@ -69,6 +71,7 @@ def produto():
    df= df.groupby(['codpro_id', 'descricao']).apply(lambda x: x.assign(num_ocorrencias=len(x))).reset_index(drop=True)
    df = df.drop_duplicates(subset=['codpro_id'])
    df['valor_total'] = df['valor_unitpro'] * df['num_ocorrencias']
+   df['tipo'] = df['descricao'].str.slice(0,2)
    
    return df
 
@@ -97,6 +100,13 @@ def obter_dados():
 @app.route("/tabela_produtos")
 def dados_produtos():
    df = produto()
+   return jsonify(df.to_dict(orient='records'))
+
+@app.route("/corrida_go")
+def corridaGO():
+   df = produto()
+   go = ['ATITUDE','BULGET','EVOKE','HICKMANN','ANA HICKMAN','GUCCI','SPEEDO']
+   df= df[df['grupo'].isin(go)]
    return jsonify(df.to_dict(orient='records'))
 
 @app.route ("/tabela_dias")
