@@ -31,7 +31,7 @@ inner join users_user uu
 on uu.id = vv.vendedor_id
 
 where vv.status = 'f'
-and create_at < 20221018
+
 
 """
 
@@ -52,7 +52,7 @@ on vcv.os_id = vv.ordem
 
 
 where vv.status = 'f'
-and create_at < 20221018
+
 
 """
 # and create_at < 20221018
