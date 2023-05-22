@@ -102,7 +102,7 @@ def obter_dados():
     dfvu = pd.concat([top_10, outros.groupby('legenda').sum()]).reset_index(drop=True)
     dfvu= dfvu.drop('legenda',axis=1)
     dfvu.at[10, 'valor_unitpro'] = 'Outros'
-    print(dfvu)
+
     return jsonify(dfvu.to_dict(orient='records'))
 
 @app.route("/tabela_produtos")
