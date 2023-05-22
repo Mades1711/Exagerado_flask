@@ -95,18 +95,19 @@ def obter_dados():
     dfvu = dfvu.loc[:, ['valor_unitpro', 'os_id']]
     dfvu = dfvu.rename(columns={'os_id': 'quantidade'})
     dfvu = dfvu.sort_values('quantidade', ascending=False)
+    dfvu['ranking'] = range(1, len(dfvu) + 1)
+    dfvu.loc[dfvu['ranking'] > 10, 'legenda'] = 'outros'
+    top_10 = dfvu[dfvu['ranking'] <= 10]
+    outros = dfvu[dfvu['legenda'] == 'outros']
+    dfvu = pd.concat([top_10, outros.groupby('legenda').sum()]).reset_index(drop=True)
+    dfvu= dfvu.drop('legenda',axis=1)
+    dfvu.at[10, 'valor_unitpro'] = 'Outros'
+    print(dfvu)
     return jsonify(dfvu.to_dict(orient='records'))
 
 @app.route("/tabela_produtos")
 def dados_produtos():
    df = produto()
-   return jsonify(df.to_dict(orient='records'))
-
-@app.route("/corrida_go")
-def corridaGO():
-   df = produto()
-   go = ['ATITUDE','BULGET','EVOKE','HICKMANN','ANA HICKMAN','GUCCI','SPEEDO']
-   df= df[df['grupo'].isin(go)]
    return jsonify(df.to_dict(orient='records'))
 
 @app.route ("/tabela_dias")
@@ -159,16 +160,6 @@ def index():
     TKM = Total_vendido/Quantidade_venda
     TKM_formatado = locale.currency(TKM, grouping=True, symbol=None)
 
-    #tabela
-    # df['hour_at'] = df['hour_at'].astype('timedelta64[s]')
-    # df ['horas'] = df['hour_at'].dt.components['hours']
-    # faixas = [0, 10, 12, 14, 16, 18, 24]
-    # labels = ['0h~10h', '10h~12h', '12h~14h', '14h~16h', '16h~18h', '18h~24h']
-    # df['faixas'] = pd.cut(df['horas'], bins=faixas, labels=labels)
-    # df = df.drop(['hour_at','Numero Semana', 'create_at','horas'], axis=1)
-    # print(df.dtypes)
-    # print(jsonify(df.to_dict(orient='records')))
-    
 
     return render_template('index.html',
                           Total_vendido_ultimodia_formatado = Total_vendido_ultimodia_formatado,

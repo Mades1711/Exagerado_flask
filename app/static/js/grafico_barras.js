@@ -16,7 +16,6 @@ fetch('/grafico_protunit')
        label: "Quantidade",
        data: quantidadeArray,
        backgroundColor:  "#F50707",
-       borderColor: "#F50707",
        borderWidth: 2,
        hoverBorderWidth: 2.5,
        hoverBackgroundColor: "darkgray",
@@ -40,8 +39,9 @@ fetch('/grafico_protunit')
             title: {
               display: true,
               color: "white",
+              text: 'Top 10 Quantidade vendida por preço unitário',
               font: {
-                  size: 15
+                  size: 20
               },
             },
       
@@ -60,9 +60,9 @@ fetch('/grafico_protunit')
       
 
     const subbox = document.querySelector('.subbox');
-    subbox.style.height = '6000px';
+    subbox.style.height = '1000px';
     if(barChart.data.labels.length > 7) {
-        const newHeight = 3500 + ((barChart.data.labels.length - 7)*20);
+        const newHeight =  ((barChart.data.labels.length - 7));
         subbox.style.height = '${newHeight}px';
     }
 
