@@ -60,7 +60,7 @@ fetch('/grafico_protunit')
       
 
     const subbox = document.querySelector('.subbox');
-    subbox.style.height = '1000px';
+    subbox.style.height = '500px';
     if(barChart.data.labels.length > 7) {
         const newHeight =  ((barChart.data.labels.length - 7));
         subbox.style.height = '${newHeight}px';

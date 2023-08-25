@@ -20,6 +20,20 @@ fetch('/tabela_dias')
   
     return formattedValue;
   }
+
+      function reais (params){
+      if (typeof params.value !== 'number') {
+        return params.value;
+      }
+      const formattedValue =  `R$ ${params.value.toLocaleString('pt-BR')}`
+      
+      return formattedValue
+    }
+    function TKM (params){
+      var total = params.getValue('valor_total')
+      var vendas = params.getValue('num_ocorrencias')
+      return total/vendas;
+    }
     
 
     const eGridDiv = document.getElementById("tabela_vendedor");
@@ -33,14 +47,7 @@ fetch('/tabela_dias')
           minWidth: 220, maxWidth: 220,
          },
 
-         {headerName: 'Grupo',
-          field:'grupo', 
-          minWidth: 130, maxWidth: 130,
-          lockPosition: true,
-          hide: true
-         },
-
-        { headerName: "Dia",
+         { headerName: "Dia",
          field: "Dia_semana", 
          rowGroupIndex: 1, 
          hide: true,
@@ -49,22 +56,34 @@ fetch('/tabela_dias')
          minWidth: 220, maxWidth: 220,
         }, 
 
+        { field: "faixas",
+        rowGroupIndex: 2, 
+        hide: true,
+        lockPosition: true,
+        minWidth: 130, maxWidth: 130,
+      },
+
+
+         {headerName: 'Grupo',
+          field:'grupo', 
+          minWidth: 130, maxWidth: 130,
+          lockPosition: true,
+          hide: true
+         },
+
+
+
         { headerName: "Total", 
           field: "valor_unitpro", 
+          valueFormatter: reais,
           aggFunc: 'sum', 
-          //valueFormatter: params => `R$ ${params.value.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')}`,
+          sort: 'desc',
           enableGroupTotal: true,
           enableValue: true,
           minWidth: 220, maxWidth: 220,
           lockPosition: true
         },
 
-        { field: "faixas",
-          rowGroupIndex: 2, 
-          hide: true,
-          lockPosition: true,
-          minWidth: 130, maxWidth: 130,
-        },
 
 
         { headerName: "Vendas", 

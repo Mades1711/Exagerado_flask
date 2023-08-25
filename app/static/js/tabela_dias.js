@@ -5,6 +5,15 @@ fetch('/tabela_dias')
   .then(data => {
     dados = data;
    //console.log(dados);
+
+   function reais(params) {
+    if (typeof params.value !== 'number') {
+      return params.value;
+    }
+    const formattedValue = `R$ ${params.value.toLocaleString('pt-BR')}`
+
+    return formattedValue
+  }
     
 
     const eGridDiv = document.getElementById("tabela_dias");
@@ -19,7 +28,7 @@ fetch('/tabela_dias')
         { headerName: "Total", 
           field: "valor_unitpro", 
           aggFunc: 'sum', 
-          valueFormatter: params => `R$ ${params.value.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')}`,
+          valueFormatter: reais,
           enableGroupTotal: true,
           enableValue: true,
           minWidth: 150, maxWidth: 150,
@@ -64,10 +73,10 @@ fetch('/tabela_dias')
         columnDefs: columnDefs,
         rowData: dados,
         animateRows: true,
-        suppressColumnVirtualisation: true,
-        suppressAggFuncInHeader: true,
         groupIncludeFooter: true,
         groupIncludeTotalFooter: true,
+        suppressAggFuncInHeader: true,
+        suppressColumnVirtualisation: true,
         autoGroupColumnDef:{
              field: 'os_id',
              pinned: 'left',
@@ -79,6 +88,11 @@ fetch('/tabela_dias')
           resizable: true,
           sortable: true,
           filter: true,
+          enableValue: true,
+          enableRowGroup: true,
+          enablePivot: true,
+          flex: 1,
+          lockPosition: true,
           
         }
 
