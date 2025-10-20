@@ -11,48 +11,43 @@ import numpy as np
 warnings.filterwarnings('ignore')
 locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
 
-sql = """select 
-os_id,
-codpro_id,
-grupo,
-vcv.valor_unitpro,
-vv.create_at,
-hour_at,
-first_name
+sql = """
+select 
+   os_id,
+   codpro_id,
+   grupo,
+   vcv.valor_unitpro,
+   vv.create_at,
+   hour_at,
+   first_name
 from vendas_corpo_venda vcv
-
 inner join produtos_produto pp
-on pp.codigo = vcv.codpro_id
-
+   on pp.codigo = vcv.codpro_id
 inner join vendas_venda vv
-on vcv.os_id = vv.ordem
-
+   on vcv.os_id = vv.ordem
+inner join vendas_formapagamento vf
+	on vf.key_id = vv.ordem
 inner join users_user uu
-on uu.id = vv.vendedor_id
-
-where vv.status = 'f'
-
+   on uu.id = vv.vendedor_id
+where vv.status = 'f' and vf.forma <> 'FO'
 
 """
 
 sql2 = """
 select 
-codpro_id,
-grupo,
-descricao,
-vcv.valor_unitsis,
-vcv.valor_unitpro
+	codpro_id,
+	grupo,
+	descricao,
+	vcv.valor_unitsis,
+	vcv.valor_unitpro
 from vendas_corpo_venda vcv
-
 inner join produtos_produto pp
-on pp.codigo = vcv.codpro_id
-
+	on pp.codigo = vcv.codpro_id
 inner join vendas_venda vv
-on vcv.os_id = vv.ordem
-
-
-where vv.status = 'f'
-
+	on vcv.os_id = vv.ordem
+inner join vendas_formapagamento vf
+	on vf.key_id = vv.ordem
+where vv.status = 'f' and vf.forma <> "FO"
 
 """
 # and create_at < 20221018
